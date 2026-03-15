@@ -29,7 +29,7 @@ function resetAuto() {
 
 /* --- RESULTADOS SLIDER --- */
 const slidesResultados = document.getElementById("slidesResultados");
-const totalR = 9; // Certifique-se que este número bate com a qtde de fotos
+const totalR = 12; // Certifique-se que este número bate com a qtde de fotos
 let indexR = 0;
 
 // 1. Carregar Imagens
