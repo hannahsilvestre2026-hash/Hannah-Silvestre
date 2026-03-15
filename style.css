@@ -1,0 +1,390 @@
+:root {
+  --bg-color: #3b1f0f;
+  --gold: #d4af37;
+  --gold-glow: rgba(212, 175, 55, 0.4);
+  --wine: #5a0f2e;
+  --wine-glow: rgba(90, 15, 46, 0.8);
+  --card-bg: rgba(0, 0, 0, 0.3);
+  --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--gold);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* --- HERO & SLIDER  --- */
+.hero {
+  text-align: center;
+  padding: 80px 20px 40px;
+  background: radial-gradient(circle at top, #4e2914 0%, #3b1f0f 100%);
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 5; 
+  margin: 0 auto 30px;
+  overflow: hidden;
+  border-radius: 20px;
+  
+  /* Efeito Neon Dourado na Borda */
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 20px var(--gold-glow), inset 0 0 10px var(--gold-glow);
+  transition: var(--transition);
+}
+
+.slider:hover {
+  transform: scale(1.02);
+  border-color: #fff;
+  box-shadow: 0 0 30px var(--gold), 0 0 50px var(--gold-glow);
+}
+
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform .6s ease-in-out;
+}
+
+.slides img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* 2. PADRÃO PARA RESULTADOS (Evita o zoom e mostra o depoimento inteiro) */
+#slidesResultados img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* MOSTRA A IMAGEM INTEIRA SEM CORTAR */
+    background-color: rgba(0, 0, 0, 0.2); /* Adiciona um fundinho escuro caso a imagem seja estreita */
+    flex-shrink: 0;
+}
+
+/* 3. AJUSTE DA MOLDURA DOS RESULTADOS */
+/* Se os depoimentos estiverem ficando muito pequenos, podemos ajustar a altura do slider no card */
+.card .slider-resultados {
+    aspect-ratio: auto; /* Deixa a altura ser flexível ou... */
+    height: 500px;      /* Define uma altura fixa confortável para ler depoimentos */
+    max-width: 100%;
+    background: #2a150a; /* Fundo que combina com seu site para as bordas das fotos */
+}
+
+/* --- SEÇÕES E CARDS --- */
+.sec {
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 650px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--gold);
+  padding: 40px;
+  border-radius: 24px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.card:hover {
+  background: rgba(90, 15, 46, 0.1);
+  transform: translateY(-10px);
+  border-color: #fff;
+  box-shadow: 0 0 25px var(--gold-glow);
+}
+
+/* --- CORREÇÃO DAS LISTAS (SEM PONTOS) --- */
+ul {
+  list-style: none; /* Remove os pontos */
+  padding: 0;       /* Centraliza corretamente */
+  margin: 20px 0;
+}
+
+ul li {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  text-align: center; /* Mantém o alinhamento central do card */
+}
+
+/* --- BOTÕES --- */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 28px;
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: var(--transition);
+  background: transparent;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--gold);
+  color: var(--bg-color);
+  box-shadow: 0 0 20px var(--gold);
+}
+
+.btn.grande {
+  width: 100%;
+  font-size: 18px;
+  padding: 18px;
+}
+
+/* --- NAVEGAÇÃO SLIDER --- */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* --- FOOTER --- */
+.contatos {
+  background: #251309;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.icones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  transition: var(--transition);
+}
+
+.icon svg {
+  width: 24px;
+  fill: var(--gold);
+}
+
+.icon:hover {
+  background: var(--wine);
+  border-color: #fff;
+  transform: scale(1.1);
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 1.8rem; }
+  .slider { max-width: 90%; }
+  .card { padding: 25px; }
+}
+
+/* --- MENU HAMBÚRGUER (INTEGRAÇÃO) --- */
+
+/* Botão fixo no canto */
+/* 1. O CONTAINER - Transformado em um quadrado perfeito para rotação central */
+.menu-toggle {
+    position: fixed !important;
+    top: 25px !important;
+    right: 25px !important;
+    width: 30px !important;
+    height: 30px !important; 
+    z-index: 9999 !important;
+    cursor: pointer;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+/* 2. AS LINHAS - Todas nascem no centro exato */
+.menu-toggle span {
+    position: absolute !important;
+    display: block;
+    height: 4px !important; 
+    width: 100% !important;
+    background-color: var(--gold) !important;
+    border-radius: 4px !important;
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 0 8px var(--gold-glow);
+    transform-origin: center !important;
+}
+
+/* 3. POSIÇÃO INICIAL (HAMBÚRGUER) */
+.menu-toggle span:nth-child(1) { transform: translateY(-10px); }
+.menu-toggle span:nth-child(2) { transform: translateY(0); }
+.menu-toggle span:nth-child(3) { transform: translateY(10px); }
+
+/* 4. TRANSFORMAÇÃO PARA X (ATIVO) */
+.menu-toggle.active span:nth-child(1) { 
+    transform: translateY(0) rotate(45deg) !important; 
+}
+
+.menu-toggle.active span:nth-child(2) { 
+    opacity: 0 !important; 
+    transform: translateX(-20px); 
+}
+
+.menu-toggle.active span:nth-child(3) { 
+    transform: translateY(0) rotate(-45deg) !important; 
+}
+
+/* Overlay de fundo */
+.menu-overlay {
+    position: fixed;
+    top: -110%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(59, 31, 15, 0.98); /* var(--bg-color) com opacidade */
+    backdrop-filter: blur(15px);
+    z-index: 2500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.menu-overlay.active {
+    top: 0;
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+}
+
+.menu-items a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: var(--transition);
+}
+
+/* Efeito de entrada em cascata */
+.menu-overlay.active .menu-items a {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(0.1s * var(--i));
+}
+
+/* Hover nos links - Seguindo seu estilo neon */
+.menu-items a:hover {
+    color: #fff;
+    letter-spacing: 6px;
+    text-shadow: 0 0 15px var(--gold), 0 0 30px var(--gold-glow);
+}
+
+/* Rolagem suave para os IDs */
+html {
+    scroll-behavior: smooth;
+}
+
+/* BOTÃO HAMBÚRGUER - AJUSTE DESKTOP E MOBILE */
+.menu-toggle {
+    position: fixed;
+    top: 20px; /* Distância do topo */
+    right: 20px; /* Distância da direita */
+    width: 35px;
+    height: 22px;
+    z-index: 9999 !important; /* Força ficar na frente de TUDO */
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: transparent;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--gold); /* Usa seu dourado */
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.5); /* Brilho leve para aparecer no escuro */
+    transition: var(--transition);
+}
+
+/* Garante que o botão apareça no Mobile */
+@media (max-width: 768px) {
+    .menu-toggle {
+        top: 15px;
+        right: 15px;
+        width: 30px;
+        height: 20px;
+    }
+}
+
+/* Slider de Resultados - Ajustado para reduzir imagens */
+.slider-resultados {
+    width: 100%;
+    max-width: 400px;    /* Reduzi um pouco a largura máxima */
+    height: 400px;        /* Reduzi a altura para as imagens ficarem menores */
+    margin: 25px auto 0;
+    background: #1a0d06;  /* Fundo bem escuro para destacar o print */
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid var(--gold);
+    
+    /* O SEGREDO AQUI: */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ajuste de Segurança para Imagens de Resultados */
+#slidesResultados img {
+    width: 100%;            /* Ocupa a largura do slider */
+    height: 100%;           /* Ocupa a altura do slider */
+    max-width: 100%;        /* NÃO deixa a imagem ser maior que o card */
+    padding: 30px;          /* Aumentei o respiro para garantir que as bordas apareçam */
+    
+    object-fit: contain !important; /* Mostra a foto inteira, sem zoom */
+    box-sizing: border-box; /* Garante que o padding não "empurre" a imagem para fora */
+    flex-shrink: 0;         /* Impede que o flexbox deforme a imagem */
+}
+
+/* Garante que o container dos slides não deixe nada vazar */
+#slidesResultados {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
